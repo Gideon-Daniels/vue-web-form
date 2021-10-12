@@ -24,7 +24,7 @@
             <label>Accept terms and conditions</label>
         </div>
 
-        <div class="sumbit">
+        <div class="submit">
             <button>Create an Account</button>
         </div>
 
@@ -148,6 +148,8 @@ export default {
     }
     .submit {
         text-align: center;
+        display: flex;
+        justify-content: center;
     }
     .error {
         color: #ff0062;
