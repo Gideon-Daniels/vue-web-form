@@ -1,11 +1,12 @@
 <template>
-    <form >
+    <form @submit.prevent="handleSubmit">
         <label>Email:</label>
         <input type="email" required v-model="email">
 
         <label>Password:</label>
         <input type="password" required v-model="password">
-        
+        <div v-if="passwordError" class="error"> {{passwordError}} </div>
+
         <label>Role:</label>
         <select v-model="role">
             <option value="developer">Web Developer</option>
@@ -21,6 +22,10 @@
         <div class="terms">
             <input type="checkbox" required v-model="terms">
             <label>Accept terms and conditions</label>
+        </div>
+
+        <div class="sumbit">
+            <button>Create an Account</button>
         </div>
 
 <!-- multiple check boxes -->
@@ -58,7 +63,8 @@ export default {
          terms: false,
         //  names: []
         tempSkill: '',
-        skills: []
+        skills: [],
+        passwordError:''
      }
  },
  methods: {
@@ -75,6 +81,12 @@ export default {
         this.skills = this.skills.filter((item) => {
             return skill !== item
         })
+    },
+    handleSubmit() {
+       // validate password
+        this.passwordError = this.password.length > 5 ? 
+        '' : 'Password must be at least 6 chars long'
+    
     }
  }
 }
@@ -125,5 +137,22 @@ export default {
         font-weight: bold;
         color: #777;
         cursor: pointer;
+    }
+    button {
+        background: #0b6dff;
+        border: 0;
+        padding: 10px 20px;
+        margin-top: 20px;
+        color: white;
+        border-radius: 20px;
+    }
+    .submit {
+        text-align: center;
+    }
+    .error {
+        color: #ff0062;
+        margin-top: 10px;
+        font-size: 0.8em;
+        font-weight: bold;
     }
 </style>
